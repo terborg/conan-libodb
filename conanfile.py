@@ -38,8 +38,12 @@ class LibodbConan( ConanFile ):
 
     def package(self):
         
+        #
+        # Copy some rarely used extensions, too
+        #
         self.copy( "*.hxx", dst="include/odb", src= os.path.join( self.source_path(), "odb" )  )
-        #self.copy( "*.h", dst="include/odb", src= os.path.join( self.source_path(), "odb" )  )
+        self.copy( "*.ixx", dst="include/odb", src= os.path.join( self.source_path(), "odb" )  )
+        self.copy( "*.txx", dst="include/odb", src= os.path.join( self.source_path(), "odb" )  )
         
         self.copy( "*.h", dst="include", keep_path=True )
         self.copy( "*.a", dst="lib", keep_path=False )
