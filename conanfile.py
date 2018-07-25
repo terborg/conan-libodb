@@ -19,11 +19,8 @@ class LibodbConan( ConanFile ):
         return os.path.join( self.source_folder, self.name + '-' + self.version )
 
     def build( self ):
-        #
-        # Here, we remove the stdlib c++, because it can not be found by the configure script
-        # for Android
-        #
-        if tools.cross_building( self.settings ):
+
+        if self.settings.os == "Android" and self.settings.compiler == "clang":
             del self.settings.compiler.libcxx
         
         env_build = AutoToolsBuildEnvironment(self)
