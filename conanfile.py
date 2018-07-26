@@ -29,6 +29,9 @@ class LibodbConan( ConanFile ):
         configure_args = []
         if not self.options.shared:
             configure_args.extend( [ '--enable-static', '--disable-shared', '--enable-static-boost' ] )
+            
+        if self.options.fPIC:
+            configure_args.extend( [ '--with-pic' ] )
         
         env_build.configure( configure_dir = self.source_path(), args=configure_args )
         env_build.make()
